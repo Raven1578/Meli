@@ -1,0 +1,296 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Tahoma, Arial, sans-serif;
+  overflow: hidden;
+}
+
+.desktop {
+  height: 100vh;
+  width: 100%;
+  background: linear-gradient(
+    135deg,
+    #ffc0d9,
+    #f58bb8,
+    #e879a1
+  );
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.desktop-icon {
+  position: absolute;
+  top: 25px;
+  left: 25px;
+  width: 80px;
+  text-align: center;
+  color: white;
+  font-size: 12px;
+  text-shadow: 1px 1px #a64d76;
+}
+
+.desktop-icon div {
+  font-size: 35px;
+  margin-bottom: 5px;
+}
+
+.desktop-icon:nth-child(2) {
+  top: 110px;
+}
+
+.window-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  padding: 15px;
+}
+
+.window {
+  width: min(420px, 95vw);
+  background: #ffe4ef;
+  border: 2px solid;
+  border-color: #ffffff #b85e80 #b85e80 #ffffff;
+  box-shadow: 4px 4px 0 rgba(130, 40, 80, .25);
+  display: none;
+  animation: popup .25s ease-out;
+}
+
+.window.active {
+  display: block;
+}
+
+@keyframes popup {
+  from {
+    opacity: 0;
+    transform: scale(.88);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.title-bar {
+  background: linear-gradient(
+    90deg,
+    #c44579,
+    #f08bb5
+  );
+  color: white;
+  padding: 7px 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
+  font-size: 13px;
+}
+
+.title-close {
+  width: 22px;
+  height: 21px;
+  background: #ffd5e5;
+  border: 2px solid;
+  border-color: white #b85e80 #b85e80 white;
+  font-size: 17px;
+  line-height: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  color: #8c345b;
+}
+
+.title-close:hover {
+  background: white;
+}
+
+.window-content {
+  padding: 25px 20px 15px;
+}
+
+.message-row {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  min-height: 80px;
+}
+
+.message-row p {
+  font-size: 14px;
+  color: #733c55;
+  line-height: 1.6;
+  white-space: pre-line;
+}
+
+.window-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 25px;
+}
+
+.win-button {
+  min-width: 85px;
+  padding: 7px 16px;
+  background: #ffd6e6;
+  border: 2px solid;
+  border-color: white #b85e80 #b85e80 white;
+  color: #783b55;
+  font-family: Tahoma, Arial, sans-serif;
+  font-size: 13px;
+  cursor: pointer;
+  transition: .15s;
+}
+
+.win-button:hover {
+  background: #fff0f6;
+  transform: translateY(-2px);
+}
+
+.win-button:active {
+  border-color: #b85e80 white white #b85e80;
+  transform: translateY(1px);
+}
+
+.yes-button {
+  font-weight: bold;
+  background: #f5a4c3;
+}
+
+@keyframes heartbeat {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+}
+
+.taskbar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 42px;
+  background: #ffd6e6;
+  border-top: 2px solid white;
+  display: flex;
+  align-items: center;
+  padding: 4px;
+  gap: 12px;
+}
+
+.start-button {
+  padding: 6px 12px;
+  font-weight: bold;
+  background: #ffeaf2;
+  border: 2px solid;
+  border-color: white #b85e80 #b85e80 white;
+  color: #783b55;
+  cursor: pointer;
+}
+
+.taskbar-text {
+  flex: 1;
+  font-size: 12px;
+  color: #783b55;
+}
+
+#clock {
+  border: 1px inset #d58ba8;
+  padding: 5px 10px;
+  font-size: 12px;
+  color: #783b55;
+}
+
+@media(max-width: 480px) {
+  .window-content {
+    padding: 20px 12px 14px;
+  }
+
+  .message-row {
+    gap: 12px;
+  }
+
+  .message-row p {
+    font-size: 13px;
+  }
+}
+
+.error-popup {
+  position: fixed;
+  width: min(330px, calc(100vw - 24px));
+  background: #ffe4ef;
+  border: 2px solid;
+  border-color: white #b85e80 #b85e80 white;
+  box-shadow: 4px 4px 0 rgba(80, 30, 50, .3);
+  z-index: 100;
+  color: #333;
+  animation: errorAppear .18s ease-out;
+}
+
+.error-popup .title-bar {
+  cursor: grab;
+  user-select: none;
+  touch-action: none;
+}
+
+.error-popup .title-bar:active {
+  cursor: grabbing;
+}
+
+.error-popup .error-content {
+  padding: 15px;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 12px;
+  line-height: 1.5;
+  min-height: 85px;
+}
+
+.error-popup .error-symbol {
+  font-size: 25px;
+  color: #d52d55;
+  flex-shrink: 0;
+}
+
+.error-popup .error-message {
+  overflow-wrap: anywhere;
+}
+
+.error-popup .error-buttons {
+  display: flex;
+  justify-content: flex-end;
+  padding: 0 12px 12px;
+}
+
+.error-popup .win-button {
+  min-width: 65px;
+}
+
+@keyframes errorAppear {
+  from {
+    opacity: 0;
+    transform: scale(.85);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+#questionWindow {
+  z-index: 99999 !important;
+  position: fixed;
+}
+
+.error-popup {
+  z-index: 100 !important;
+}
+
